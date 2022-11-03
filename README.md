@@ -6,6 +6,7 @@
 
 La presente actividad considerada como trabajo final, tiene como objetivo realizar un trabajo mediante fases semanales. La semanas para el desarrollo son: semanas 5,6,7,8
 
+
 Para la ejecución de la actividad considerar lo siguiente:
 
 + Leer detenidamente los ejercicios o problemática del archivo problematica.md
