@@ -67,3 +67,22 @@ class CasoPrueba(models.Model):
 
     def __str__(self):
         return '%s' % (self.codigo)
+
+class CicloPrueba(models.Model):
+    nombre = models.TextField(max_length=80)
+    descripcion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Descripción")
+
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='ciclos_prueba')
+
+    class Meta:
+        ordering = ('nombre',)
+
+    def __str__(self):
+        return '%s' % (self.nombre)
+
+class EjecucionPrueba(models.Model):
+    ciclo_prueba = models.ForeignKey(CicloPrueba, on_delete=models.CASCADE, related_name='pruebas_ejecutadas')
+    caso_prueba = models.ForeignKey(CasoPrueba, on_delete=models.CASCADE, related_name='pruebas_ejecutadas')
+    estado = models.CharField(max_length=1, choices=CasoPrueba.CHOICE_ESTADO, default=CasoPrueba.ESTADO_BORRADOR)
+    comentario = models.TextField(max_length=250, null=True, blank=True)
+    evidencia = models.ImageField(upload_to='evidencia/%Y/%m/%d/', null=True, blank=True)

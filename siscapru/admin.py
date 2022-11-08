@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from siscapru.models import Proyecto, CasoPrueba
+from siscapru.models import *
 
 
 #Model Admins
@@ -13,3 +13,7 @@ class ProyectoAdmin(admin.ModelAdmin):
 admin.site.register(Proyecto, ProyectoAdmin)
 
 admin.site.register(CasoPrueba)
+
+admin.site.register(CicloPrueba)
+
+admin.site.register(EjecucionPrueba)
