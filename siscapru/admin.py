@@ -16,7 +16,8 @@ class CasoPruebaAdminForm(forms.ModelForm):
         fields = '__all__'
         model = CasoPrueba
 
-class CasoPruebaInline(admin.TabularInline):
+#class CasoPruebaInline(admin.TabularInline):
+class CasoPruebaInline(admin.StackedInline):
     model = CasoPrueba
     extra = 1
     form = CasoPruebaAdminForm
