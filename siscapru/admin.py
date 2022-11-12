@@ -19,9 +19,22 @@ class CasoPruebaAdminForm(forms.ModelForm):
 #class CasoPruebaInline(admin.TabularInline):
 class CasoPruebaInline(admin.StackedInline):
     model = CasoPrueba
-    extra = 1
+    extra = 0
     form = CasoPruebaAdminForm
+    classes = ('collapse',)
     #raw_id_fields = ('usuario', 'fase', 'tramite')
+    fieldsets = [
+        ['Datos generales', {
+            'classes': ['collapse'],
+            'fields': [
+                ('codigo', 'nombre', 'estado'),
+                ('descripcion', 'prioridad', 'tipo'),
+                ('precondicion', 'postcondicion', 'pasos', 'resultado_esperado'),
+                ('observacion',)
+            ]
+        }],
+    ]
+
 
 #Model Admins
 class ProyectoAdmin(admin.ModelAdmin):
