@@ -69,7 +69,7 @@ class CasoPrueba(models.Model):
         return '%s - %s - (%s)' % (self.codigo, self.nombre, self.get_estado_display())
 
 class CicloPrueba(models.Model):
-    nombre = models.TextField(max_length=80)
+    nombre = models.CharField(max_length=80)
     descripcion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Descripción")
 
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='ciclos_prueba')
