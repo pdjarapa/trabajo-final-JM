@@ -66,7 +66,7 @@ class CasoPrueba(models.Model):
         constraints = [models.UniqueConstraint(fields=['codigo', 'proyecto'], name='caso_prueba_codigo_proyecto_unique')]
 
     def __str__(self):
-        return '%s' % (self.codigo)
+        return '%s - %s - (%s)' % (self.codigo, self.nombre, self.get_estado_display())
 
 class CicloPrueba(models.Model):
     nombre = models.TextField(max_length=80)
