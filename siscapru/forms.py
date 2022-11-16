@@ -52,3 +52,8 @@ class CicloPruebaInline(admin.TabularInline):
     model = CicloPrueba
     extra = 0
     form = CicloPruebaAdminForm
+    show_change_link = True
+
+
+class EjecucionPruebaInline(admin.TabularInline):
+    model = EjecucionPrueba

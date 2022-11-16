@@ -86,3 +86,11 @@ class EjecucionPrueba(models.Model):
     estado = models.CharField(max_length=1, choices=CasoPrueba.CHOICE_ESTADO, default=CasoPrueba.ESTADO_BORRADOR)
     comentario = models.TextField(max_length=250, null=True, blank=True)
     evidencia = models.ImageField(upload_to='evidencia/%Y/%m/%d/', null=True, blank=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.ciclo_prueba.nombre, self.caso_prueba.nombre)
+
+    def get_proyecto(self):
+        return self.ciclo_prueba.proyecto
+
+    get_proyecto.short_description = 'Proyecto'

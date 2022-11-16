@@ -29,8 +29,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+#https://django-jazzmin.readthedocs.io/
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
