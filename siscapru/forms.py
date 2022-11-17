@@ -26,7 +26,7 @@ class CasoPruebaInline(admin.TabularInline):
         ['Datos generales', {
             'classes': ['collapse'],
             'fields': [
-                ('codigo', 'nombre', 'estado'),
+                ('codigo', 'estado'),
                 ('prioridad', 'tipo', 'variedad', 'evaluacion'),
                 ('descripcion', ),
                 ('precondicion', 'postcondicion', 'pasos', 'resultado_esperado'),

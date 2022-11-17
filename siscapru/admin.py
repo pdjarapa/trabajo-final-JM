@@ -22,7 +22,7 @@ class ProyectoAdmin(admin.ModelAdmin):
         return obj.ciclos_prueba.count()
 
 class CasoPruebaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'nombre', 'descripcion', 'estado')
+    list_display = ('codigo', 'descripcion', 'estado')
     #search_fields = ('nombre', 'descripcion')
     list_filter = ('proyecto', )
 
