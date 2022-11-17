@@ -1,5 +1,5 @@
 from django.contrib import admin
-from siscapru.forms import CasoPruebaInline, CicloPruebaInline, EjecucionPruebaInline
+from siscapru.forms import CasoPruebaInline, CicloPruebaInline, EjecucionPruebaInline, CasoPruebaAdminForm
 from siscapru.models import *
 
 admin.site.site_header = 'Sistema de Gestión de Casos de Prueba'
@@ -25,6 +25,8 @@ class CasoPruebaAdmin(admin.ModelAdmin):
     list_display = ('codigo', 'descripcion', 'estado')
     #search_fields = ('nombre', 'descripcion')
     list_filter = ('proyecto', )
+    raw_id_fields = ('proyecto',)
+    form = CasoPruebaAdminForm
 
 class EjecucinPruebaAdmin(admin.ModelAdmin):
     list_display = ('ciclo_prueba', 'caso_prueba', 'get_proyecto')
