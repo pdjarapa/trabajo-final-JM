@@ -21,17 +21,21 @@ class ProyectoAdmin(admin.ModelAdmin):
     def ciclos_prueba(self, obj):
         return obj.ciclos_prueba.count()
 
+class CasoPruebaAdmin(admin.ModelAdmin):
+    list_display = ('codigo', 'nombre', 'descripcion', 'estado')
+    #search_fields = ('nombre', 'descripcion')
+    list_filter = ('proyecto', )
+
 class EjecucinPruebaAdmin(admin.ModelAdmin):
     list_display = ('ciclo_prueba', 'caso_prueba', 'get_proyecto')
     #search_fields = ('nombre', 'descripcion')
-    list_filter = ('ciclo_prueba__proyecto', )
-
+    list_filter = ('ciclo_prueba__proyecto', 'estado',)
 
 
 # Register your models here.
 admin.site.register(Proyecto, ProyectoAdmin)
 
-admin.site.register(CasoPrueba)
+admin.site.register(CasoPrueba, CasoPruebaAdmin)
 
 #admin.site.register(CicloPrueba)
 

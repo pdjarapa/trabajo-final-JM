@@ -22,7 +22,7 @@ class CasoPruebaInline(admin.TabularInline):
     extra = 0
     form = CasoPruebaAdminForm
     #classes = ('collapse',)
-    #raw_id_fields = ('usuario', 'fase', 'tramite')
+    raw_id_fields = ('proyecto', )
     fieldsets = [
         ['Datos generales', {
             'classes': ['collapse'],
