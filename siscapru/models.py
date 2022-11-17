@@ -18,7 +18,6 @@ class CasoPrueba(models.Model):
     TIPO_FUNCIONAL = 'F'
     TIPO_NO_FUNCIONAL = 'N'
     TIPO_ESTRUCTURAL = 'E'
-    TIPO_REGRESION = 'R'
 
     VARIEDAD_POSITVA = '+'
     VARIEDAD_NEGATIVA = '-'
@@ -36,8 +35,7 @@ class CasoPrueba(models.Model):
     ESTADO_FALLO = 'F'
 
     CHOICE_TIPO = (
-    (TIPO_FUNCIONAL, 'Funcional'), (TIPO_NO_FUNCIONAL, 'No Funcional'), (TIPO_ESTRUCTURAL, 'Estructural'),
-    (TIPO_REGRESION, 'Regresión'))
+    (TIPO_FUNCIONAL, 'Funcional'), (TIPO_NO_FUNCIONAL, 'No Funcional'), (TIPO_ESTRUCTURAL, 'Estructural'),)
     CHOICE_VARIEDAD = ((VARIEDAD_POSITVA, 'Positiva'), (VARIEDAD_NEGATIVA, 'Negativa'))
     CHOICE_PRIORIDAD = ((PIORIDAD_ALTA, 'Alta'), (PIORIDAD_MEDIA, 'Media'), (PIORIDAD_BAJA, 'Baja'))
     CHOICE_EVALUACION = ((EVALUACION_MANUAL, 'Manual'), (EVALUACION_AUTOMATICA, 'Automática'))
@@ -51,7 +49,6 @@ class CasoPrueba(models.Model):
     pasos = models.TextField(max_length=250, null=True, blank=True)
     resultado_esperado = models.TextField(max_length=250, null=True, blank=True)
     postcondicion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Postcondición")
-    observacion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Observación")
 
     tipo = models.CharField(max_length=1, choices=CHOICE_TIPO, default=TIPO_FUNCIONAL)
     variedad = models.CharField(max_length=1, choices=CHOICE_VARIEDAD, default=VARIEDAD_POSITVA)
@@ -86,6 +83,7 @@ class EjecucionPrueba(models.Model):
     estado = models.CharField(max_length=1, choices=CasoPrueba.CHOICE_ESTADO, default=CasoPrueba.ESTADO_BORRADOR)
     comentario = models.TextField(max_length=250, null=True, blank=True)
     evidencia = models.ImageField(upload_to='evidencia/%Y/%m/%d/', null=True, blank=True)
+    regresion = models.BooleanField(default=False, verbose_name='¿Regresión?')
 
     def __str__(self):
         return '%s - %s' % (self.ciclo_prueba.nombre, self.caso_prueba.nombre)

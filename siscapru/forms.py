@@ -5,13 +5,12 @@ from siscapru.models import *
 class CasoPruebaAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        attrs_txta = {'cols': 34, 'rows': 3}
+        attrs_txta = {'cols': 20, 'rows': 2}
         self.fields['descripcion'].widget = forms.widgets.Textarea(attrs=attrs_txta)
         self.fields['precondicion'].widget = forms.widgets.Textarea(attrs=attrs_txta)
         self.fields['pasos'].widget = forms.widgets.Textarea(attrs=attrs_txta)
         self.fields['resultado_esperado'].widget = forms.widgets.Textarea(attrs=attrs_txta)
         self.fields['postcondicion'].widget = forms.widgets.Textarea(attrs=attrs_txta)
-        self.fields['observacion'].widget = forms.widgets.Textarea(attrs=attrs_txta)
 
     class Meta:
         fields = '__all__'
@@ -29,7 +28,7 @@ class CasoPruebaInline(admin.TabularInline):
             'fields': [
                 ('codigo', 'nombre', 'estado'),
                 ('prioridad', 'tipo', 'variedad', 'evaluacion'),
-                ('descripcion', 'observacion'),
+                ('descripcion', ),
                 ('precondicion', 'postcondicion', 'pasos', 'resultado_esperado'),
             ]
         }],
