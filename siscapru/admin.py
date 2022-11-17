@@ -31,7 +31,7 @@ class EjecucinPruebaAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Proyecto, ProyectoAdmin)
 
-#admin.site.register(CasoPrueba)
+admin.site.register(CasoPrueba)
 
 #admin.site.register(CicloPrueba)
 

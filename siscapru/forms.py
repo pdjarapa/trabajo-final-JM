@@ -17,7 +17,7 @@ class CasoPruebaAdminForm(forms.ModelForm):
         fields = '__all__'
         model = CasoPrueba
 
-class CasoPruebaInline(admin.StackedInline):
+class CasoPruebaInline(admin.TabularInline):
     model = CasoPrueba
     extra = 0
     form = CasoPruebaAdminForm
@@ -27,8 +27,8 @@ class CasoPruebaInline(admin.StackedInline):
         ['Datos generales', {
             'classes': ['collapse'],
             'fields': [
-                ('prioridad', 'tipo', 'variedad', 'evaluacion'),
                 ('codigo', 'nombre', 'estado'),
+                ('prioridad', 'tipo', 'variedad', 'evaluacion'),
                 ('descripcion', 'observacion'),
                 ('precondicion', 'postcondicion', 'pasos', 'resultado_esperado'),
             ]
