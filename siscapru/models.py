@@ -85,8 +85,10 @@ class EjecucionPrueba(models.Model):
     evidencia = models.ImageField(upload_to='evidencia/%Y/%m/%d/', null=True, blank=True)
     regresion = models.BooleanField(default=False, verbose_name='¿Regresión?')
 
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='ejecucion_pruebas')
+
     def __str__(self):
-        return '%s - %s' % (self.ciclo_prueba.nombre, self.caso_prueba.nombre)
+        return '%s - %s' % ((self.ciclo_prueba.nombre if self.id else 'NC'), (self.caso_prueba.nombre if self.id else 'NC'))
 
     def get_proyecto(self):
         return self.ciclo_prueba.proyecto

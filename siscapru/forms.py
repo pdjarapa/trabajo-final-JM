@@ -52,5 +52,35 @@ class CicloPruebaInline(admin.TabularInline):
     form = CicloPruebaAdminForm
     show_change_link = True
 
+class EjecucionPruebaAdminForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['comentario'].widget = forms.widgets.Textarea(attrs={'cols': 40, 'rows': 3})
+
+        #print('kwargs', args, self.)
+
+        if self.instance.id!=None:
+            self.fields['caso_prueba'].queryset = CasoPrueba.objects.filter(proyecto=self.instance.proyecto).order_by('codigo')
+
+    class Meta:
+        fields = '__all__'
+        model = EjecucionPrueba
+
 class EjecucionPruebaInline(admin.TabularInline):
     model = EjecucionPrueba
+    extra = 0
+    form = EjecucionPruebaAdminForm
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super(EjecucionPruebaInline, self).get_formset(request, obj, **kwargs)
+        print('proyecto:::', type(obj))
+        if type(obj) == Proyecto:
+            formset.form.base_fields["ciclo_prueba"].queryset = formset.form.base_fields["ciclo_prueba"].queryset.filter(proyecto=obj)
+            formset.form.base_fields["caso_prueba"].queryset = formset.form.base_fields["caso_prueba"].queryset.filter(proyecto=obj)
+
+        if type(obj) == CicloPrueba:
+            formset.form.base_fields["ciclo_prueba"].queryset = formset.form.base_fields["ciclo_prueba"].queryset.filter(proyecto=obj.proyecto)
+            formset.form.base_fields["caso_prueba"].queryset = formset.form.base_fields["caso_prueba"].queryset.filter(proyecto=obj.proyecto)
+
+        return formset
