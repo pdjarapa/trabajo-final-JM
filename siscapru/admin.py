@@ -12,7 +12,6 @@ class ProyectoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'descripcion', 'casos_prueba', 'ciclos_prueba', 'activo')
     search_fields = ('nombre', 'descripcion')
     list_filter = ('activo', )
-    #inlines = [CasoPruebaInline, CicloPruebaInline, EjecucionPruebaInline]
     inlines = [CasoPruebaInline, CicloPruebaInline]
 
     @admin.display(empty_value='???')
