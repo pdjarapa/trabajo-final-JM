@@ -43,7 +43,6 @@ class CasoPrueba(models.Model):
                      (ESTADO_FALLO, 'Fallo'))
 
     codigo = models.CharField(max_length=20, verbose_name="Código")
-    nombre = models.CharField(max_length=80)
     descripcion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Descripción")
     precondicion = models.TextField(max_length=250, null=True, blank=True, verbose_name="Precondición")
     pasos = models.TextField(max_length=250, null=True, blank=True)
@@ -63,7 +62,7 @@ class CasoPrueba(models.Model):
         constraints = [models.UniqueConstraint(fields=['codigo', 'proyecto'], name='caso_prueba_codigo_proyecto_unique')]
 
     def __str__(self):
-        return '%s - %s - (%s)' % (self.codigo, self.nombre, self.get_estado_display())
+        return '%s - %s - (%s)' % (self.codigo, self.descripcion, self.get_estado_display())
 
 class CicloPrueba(models.Model):
     nombre = models.CharField(max_length=80)
