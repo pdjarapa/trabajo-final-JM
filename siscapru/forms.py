@@ -58,11 +58,6 @@ class EjecucionPruebaAdminForm(forms.ModelForm):
 
         self.fields['comentario'].widget = forms.widgets.Textarea(attrs={'cols': 40, 'rows': 3})
 
-        #print('kwargs', args, self.)
-
-        if self.instance.id!=None:
-            self.fields['caso_prueba'].queryset = CasoPrueba.objects.filter(proyecto=self.instance.proyecto).order_by('codigo')
-
     class Meta:
         fields = '__all__'
         model = EjecucionPrueba
@@ -79,8 +74,8 @@ class EjecucionPruebaInline(admin.TabularInline):
             formset.form.base_fields["ciclo_prueba"].queryset = formset.form.base_fields["ciclo_prueba"].queryset.filter(proyecto=obj)
             formset.form.base_fields["caso_prueba"].queryset = formset.form.base_fields["caso_prueba"].queryset.filter(proyecto=obj)
 
-        if type(obj) == CicloPrueba:
-            formset.form.base_fields["ciclo_prueba"].queryset = formset.form.base_fields["ciclo_prueba"].queryset.filter(proyecto=obj.proyecto)
-            formset.form.base_fields["caso_prueba"].queryset = formset.form.base_fields["caso_prueba"].queryset.filter(proyecto=obj.proyecto)
+        #if type(obj) == CicloPrueba:
+        #    formset.form.base_fields["ciclo_prueba"].queryset = formset.form.base_fields["ciclo_prueba"].queryset.filter(proyecto=obj.proyecto)
+        #    formset.form.base_fields["caso_prueba"].queryset = formset.form.base_fields["caso_prueba"].queryset.filter(proyecto=obj.proyecto)
 
         return formset
